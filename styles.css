@@ -64,11 +64,32 @@ button {
   font: inherit;
 }
 
+.page {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  background: var(--bg);
+  border-radius: 0 0 var(--page-radius, 0px) var(--page-radius, 0px);
+  transform: scale(var(--page-scale, 1));
+  transform-origin: 50% 100%;
+  box-shadow: 0 30px 80px -40px rgba(0, 0, 0, 0.45);
+  will-change: transform;
+}
+
+.reveal-spacer {
+  height: 55vh;
+  pointer-events: none;
+}
+
 #portfolio {
   max-width: 640px;
-  min-height: 100vh;
   margin: 0 auto;
-  padding: 30px 26px 60px;
+  padding: 30px 26px 70px;
+}
+
+.contact-anchor {
+  height: 1px;
+  scroll-margin-top: 24px;
 }
 
 .splash-screen {
@@ -379,7 +400,7 @@ kbd {
 
 .date {
   padding-top: 3px;
-  color: var(--faint);
+  color: var(--muted);
   font-size: 11px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -758,10 +779,210 @@ p {
   font-weight: 400;
 }
 
-footer {
-  margin-top: 64px;
-  border-top: 1px solid var(--border);
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- Time-of-day gradient backdrop + connect panel (revealed on scroll) ---- */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: var(--grad);
+  transition: background 700ms ease;
+}
+
+.connect {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  height: 55vh;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 clamp(22px, 5vw, 60px) clamp(30px, 5vh, 56px);
+  color: var(--c-text);
+}
+
+.connect-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.connect-eyebrow {
+  margin: 0 0 16px;
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-soft);
+}
+
+.connect-title-line {
+  margin: 0;
+  color: var(--c-text);
+  font-size: clamp(26px, 4.4vw, 38px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+.type-wrap {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+.type-caret {
+  display: inline-block;
+  width: 2px;
+  height: 0.92em;
+  margin-left: 3px;
+  border-radius: 1px;
+  background: currentColor;
+  transform: translateY(0.06em);
+  animation: caret-blink 1s steps(1, end) infinite;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.connect-email {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--c-text);
+  font-family: "Geist Mono", monospace;
+  font-size: clamp(15px, 2.4vw, 19px);
+  text-decoration: none;
+  border-bottom: 1px solid var(--c-line);
+  padding-bottom: 3px;
+  transition: border-color 180ms ease, opacity 180ms ease;
+}
+
+.connect-email:hover,
+.connect-email:focus-visible {
+  border-color: var(--c-text);
+}
+
+.connect-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.connect-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid var(--c-glass-border);
+  border-radius: 999px;
+  padding: 9px 16px 9px 14px;
+  color: var(--c-text);
+  font-size: 13.5px;
+  text-decoration: none;
+  background: var(--c-glass-bg);
+  -webkit-backdrop-filter: blur(14px) saturate(115%);
+  backdrop-filter: blur(14px) saturate(115%);
+  box-shadow:
+    inset 0 1px 0 var(--c-glass-hi),
+    0 8px 22px -12px rgba(0, 0, 0, 0.35);
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.connect-link:hover,
+.connect-link:focus-visible {
+  background: var(--c-glass-bg-hover);
+  transform: translateY(-1px);
+}
+
+.connect-link-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  object-fit: contain;
+}
+
+.connect-link b {
+  color: var(--c-soft);
+  font-weight: 400;
+}
+
+.connect-foot {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 40px;
   padding-top: 18px;
+  border-top: 1px solid var(--c-line);
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-soft);
+}
+
+/* Time-of-day palettes */
+body[data-time="sunrise"] {
+  --grad: linear-gradient(180deg, #fcdcab 0%, #f6b585 45%, #ef9a86 78%, #e98f93 100%);
+  --c-text: #5a3320;
+  --c-soft: #8a5a3e;
+  --c-line: rgba(90, 51, 32, 0.26);
+  --c-glass-bg: rgba(255, 250, 245, 0.18);
+  --c-glass-bg-hover: rgba(255, 250, 245, 0.3);
+  --c-glass-border: rgba(255, 255, 255, 0.5);
+  --c-glass-hi: rgba(255, 255, 255, 0.55);
+}
+
+body[data-time="day"] {
+  --grad: linear-gradient(180deg, #8fbcef 0%, #a9cdf2 45%, #c6def4 78%, #dce9f6 100%);
+  --c-text: #1f3350;
+  --c-soft: #41597c;
+  --c-line: rgba(31, 51, 80, 0.24);
+  --c-glass-bg: rgba(255, 255, 255, 0.22);
+  --c-glass-bg-hover: rgba(255, 255, 255, 0.36);
+  --c-glass-border: rgba(255, 255, 255, 0.6);
+  --c-glass-hi: rgba(255, 255, 255, 0.65);
+}
+
+body[data-time="sunset"] {
+  --grad: linear-gradient(180deg, #5f5491 0%, #97648f 38%, #d27f64 80%, #f0ab7c 100%);
+  --c-text: #3a2638;
+  --c-soft: #5f4257;
+  --c-line: rgba(58, 38, 56, 0.3);
+  --c-glass-bg: rgba(255, 250, 248, 0.15);
+  --c-glass-bg-hover: rgba(255, 250, 248, 0.26);
+  --c-glass-border: rgba(255, 255, 255, 0.42);
+  --c-glass-hi: rgba(255, 255, 255, 0.45);
+}
+
+body[data-time="night"] {
+  --grad: linear-gradient(180deg, #0e1326 0%, #161c33 50%, #232043 100%);
+  --c-text: #e7e8f0;
+  --c-soft: #9aa0bd;
+  --c-line: rgba(231, 232, 240, 0.2);
+  --c-glass-bg: rgba(255, 255, 255, 0.07);
+  --c-glass-bg-hover: rgba(255, 255, 255, 0.13);
+  --c-glass-border: rgba(255, 255, 255, 0.18);
+  --c-glass-hi: rgba(255, 255, 255, 0.16);
 }
 
 #toast {

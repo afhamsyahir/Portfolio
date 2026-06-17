@@ -71,6 +71,9 @@
       </div>
     </div>
 
+    <div class="backdrop" aria-hidden="true"></div>
+
+    <div class="page">
     <main id="portfolio">
       <nav class="topbar" aria-label="Primary" data-enter>
         <span id="clock">--:--:-- KL</span>
@@ -575,59 +578,75 @@
         </div>
       </section>
 
-      <section
-        id="contact"
-        class="section contact"
-        aria-labelledby="contact-title"
-        data-enter
-      >
-        <div class="section-heading">
-          <span>06</span>
-          <h2 id="contact-title">Contact</h2>
-        </div>
-
-        <p class="contact-line">Have something to build? Let's talk.</p>
-        <a class="email" href="mailto:afhamsyahir45@gmail.com"
-          >afhamsyahir45@gmail.com</a
-        >
-
-        <div class="contact-links">
-          <a
-            href="https://linkedin.com/in/afhamsyahir"
-            target="_blank"
-            rel="noopener"
-            ><span class="link-icon"
-              ><img src="./assets/icons/linkedin.svg" alt="" aria-hidden="true"
-            /></span>
-            Connect on LinkedIn <b>↗</b></a
-          >
-          <a href="tel:0193021317"
-            ><span class="link-icon"
-              ><svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path
-                  d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"
-                /></svg
-            ></span>
-            Call · 019-302 1317 <b>↗</b></a
-          >
-        </div>
-      </section>
-
-      <footer data-enter>
-        <span>Afham Syahir</span>
-        <span>Kuala Lumpur, MY</span>
-      </footer>
+      <div id="contact" class="contact-anchor" aria-hidden="true"></div>
 
       <div id="toast" role="status" aria-live="polite"></div>
     </main>
+    </div>
+
+    <div class="reveal-spacer" aria-hidden="true"></div>
+
+    <section
+      class="connect"
+      id="connect"
+      aria-labelledby="connect-title"
+    >
+      <h2 id="connect-title" class="visually-hidden">Contact</h2>
+      <div class="connect-inner">
+        <p class="connect-eyebrow">Get in touch</p>
+        <p class="connect-title-line">
+          Have something to
+          <span class="type-wrap"
+            ><span class="type-word">build?</span
+            ><span class="type-caret" aria-hidden="true"></span></span
+          >
+        </p>
+        <a class="connect-email" href="mailto:afhamsyahir45@gmail.com"
+          >afhamsyahir45@gmail.com</a
+        >
+
+        <div class="connect-links">
+          <a
+            class="connect-link"
+            href="https://linkedin.com/in/afhamsyahir"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              class="connect-link-icon"
+              src="./assets/icons/linkedin.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <span>LinkedIn</span>
+            <b aria-hidden="true">↗</b>
+          </a>
+          <a class="connect-link" href="tel:0193021317">
+            <svg
+              class="connect-link-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"
+              />
+            </svg>
+            <span>019-302 1317</span>
+            <b aria-hidden="true">↗</b>
+          </a>
+        </div>
+
+        <div class="connect-foot">
+          <span>© 2026 Afham Syahir</span>
+          <span>Kuala Lumpur · <span id="connect-clock">--:--</span></span>
+        </div>
+      </div>
+    </section>
 
     <script src="./script.js"></script>
   </body>

@@ -34,12 +34,46 @@ function initialTheme() {
   return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
 }
 
-function updateClock() {
-  if (!clock) return;
-  clock.textContent = `${new Date().toLocaleTimeString("en-GB", {
+const connect = document.querySelector("#connect");
+const connectClock = document.querySelector("#connect-clock");
+
+function klParts() {
+  const parts = new Intl.DateTimeFormat("en-GB", {
     hour12: false,
     timeZone: "Asia/Kuala_Lumpur",
-  })} KL`;
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  }).formatToParts(new Date());
+  const get = (t) => parts.find((p) => p.type === t)?.value ?? "00";
+  return { hour: Number(get("hour")), hh: get("hour"), mm: get("minute"), ss: get("second") };
+}
+
+function timeOfDay(hour) {
+  if (hour >= 5 && hour < 8) return "sunrise";
+  if (hour >= 8 && hour < 17) return "day";
+  if (hour >= 17 && hour < 20) return "sunset";
+  return "night";
+}
+
+function updateClock() {
+  const { hour, hh, mm, ss } = klParts();
+  if (clock) clock.textContent = `${hh}:${mm}:${ss} KL`;
+  if (connectClock) connectClock.textContent = `${hh}:${mm}`;
+  document.body.dataset.time = timeOfDay(hour);
+}
+
+const page = document.querySelector(".page");
+
+function updatePageReveal() {
+  if (!page) return;
+  const fromBottom =
+    document.documentElement.scrollHeight - window.innerHeight - window.scrollY;
+  const range = window.innerHeight * 0.85;
+  const p = Math.min(1, Math.max(0, 1 - fromBottom / range));
+  const eased = p * p * (3 - 2 * p);
+  page.style.setProperty("--page-scale", (1 - 0.05 * eased).toFixed(4));
+  page.style.setProperty("--page-radius", `${(28 * eased).toFixed(1)}px`);
 }
 
 function showToast(message) {
@@ -171,6 +205,55 @@ setTheme(initialTheme());
 updateClock();
 window.setInterval(updateClock, 1000);
 startRoseLoader();
+
+updatePageReveal();
+let revealTicking = false;
+function onRevealScroll() {
+  if (revealTicking) return;
+  revealTicking = true;
+  window.requestAnimationFrame(() => {
+    updatePageReveal();
+    revealTicking = false;
+  });
+}
+window.addEventListener("scroll", onRevealScroll, { passive: true });
+window.addEventListener("resize", updatePageReveal);
+
+function startTypewriter() {
+  const el = document.querySelector(".type-word");
+  if (!el) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const words = ["build?", "ship?", "design?", "automate?", "launch?"];
+  let wordIndex = 0;
+  let charIndex = words[0].length;
+  let deleting = true;
+
+  function step() {
+    const word = words[wordIndex];
+    if (deleting) {
+      charIndex -= 1;
+    } else {
+      charIndex += 1;
+    }
+    el.textContent = word.slice(0, charIndex);
+
+    let delay = deleting ? 60 : 120;
+    if (!deleting && charIndex === word.length) {
+      deleting = true;
+      delay = 1900;
+    } else if (deleting && charIndex === 0) {
+      deleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      delay = 380;
+    }
+    window.setTimeout(step, delay);
+  }
+
+  window.setTimeout(step, 1900);
+}
+
+startTypewriter();
 
 window.addEventListener("load", () => {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
