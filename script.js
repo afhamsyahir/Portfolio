@@ -7,8 +7,7 @@ const toastRoot = document.querySelector("#toast");
 
 function setTheme(theme) {
   root.dataset.theme = theme;
-  themeToggle.textContent = theme === "dark" ? "moon" : "sun";
-  themeToggle.setAttribute("aria-label", `Switch to ${theme === "dark" ? "light" : "dark"} theme`);
+  themeToggle?.setAttribute("aria-label", `Switch to ${theme === "dark" ? "light" : "dark"} theme`);
   localStorage.setItem("afham-theme", theme);
 }
 

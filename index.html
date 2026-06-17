@@ -10,6 +10,8 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="./assets/aem-plus.png">
     <title>Afham Syahir | Front-End Developer</title>
+    <link rel="icon" type="image/png" href="./assets/avatar.png">
+    <link rel="apple-touch-icon" href="./assets/avatar.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -22,7 +24,15 @@
         <div class="nav-actions">
           <a href="#work">work</a>
           <a href="#contact">contact</a>
-          <button id="theme-toggle" type="button" aria-label="Toggle theme">moon</button>
+          <button id="theme-toggle" type="button" aria-label="Toggle theme">
+            <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 14.8A8.3 8.3 0 0 1 9.2 3a7 7 0 1 0 11.8 11.8Z"></path>
+            </svg>
+            <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+            </svg>
+          </button>
         </div>
       </nav>
 
@@ -134,15 +144,15 @@
           </p>
 
           <article>
-            <h4>Enterprise Identity and Access Platform <span>Petronas</span></h4>
+            <h4>Enterprise Identity and Access Platform <span class="client-logo petronas">Petronas</span></h4>
             <p>Staff, contractor and vendor onboarding with facial verification and staff-card issuance, integrated with Johnson Controls P2000.</p>
           </article>
           <article>
-            <h4>Offshore Rig Planning and Scheduling <span>Petronas</span></h4>
+            <h4>Offshore Rig Planning and Scheduling <span class="client-logo petronas">Petronas</span></h4>
             <p>Interactive scheduler for approving offshore operations, with Outlook routing and a multi-tier approval workflow.</p>
           </article>
           <article>
-            <h4>Oilfield Equipment and Contractor Management <span>EnQuest · North Sea</span></h4>
+            <h4>Oilfield Equipment and Contractor Management <span class="client-logo enquest">EnQuest</span> <span class="client-region">North Sea</span></h4>
             <p>A 10+ module system tracking equipment specs, health and lifecycle, with contractor management and an interactive map.</p>
           </article>
         </div>
@@ -156,9 +166,22 @@
         <div class="skills" aria-label="Technologies">
           <span>Angular</span><span>TypeScript</span><span>RxJS</span><span>React</span><span>Tailwind</span>
           <span>.NET 8</span><span>EF Core</span><span>MSSQL</span><span>SignalR</span><span>Hangfire</span>
-          <span>Node.js</span><span>REST APIs</span><span>Azure App Service</span><span>Azure Functions</span>
-          <span>Container Apps</span><span>Azure VMs</span><span>Service Bus</span><span>Azure SQL</span>
-          <span>Azure DevOps</span><span>CI/CD</span><span>Docker</span><span>OpenAI</span><span>Ollama</span>
+          <span>Node.js</span><span>REST APIs</span>
+          <span class="skill service-provider"><span class="skill-logo azure" aria-hidden="true"></span>Azure App Service</span>
+          <span class="skill service-provider"><span class="skill-logo azure" aria-hidden="true"></span>Azure Functions</span>
+          <span class="skill service-provider"><span class="skill-logo azure" aria-hidden="true"></span>Container Apps</span>
+          <span class="skill service-provider"><span class="skill-logo azure" aria-hidden="true"></span>Azure VMs</span>
+          <span class="skill service-provider"><span class="skill-logo azure" aria-hidden="true"></span>Service Bus</span>
+          <span class="skill service-provider"><span class="skill-logo azure" aria-hidden="true"></span>Azure SQL</span>
+          <span class="skill service-provider"><span class="skill-logo aws" aria-hidden="true">aws</span>AWS S3</span>
+          <span class="skill service-provider"><span class="skill-logo aws" aria-hidden="true">aws</span>AWS EC2</span>
+          <span class="skill service-provider"><span class="skill-logo aws" aria-hidden="true">aws</span>AWS CloudFront</span>
+          <span class="skill service-provider"><span class="skill-logo aws" aria-hidden="true">aws</span>AWS Lambda</span>
+          <span class="skill service-provider"><span class="skill-logo azure-devops" aria-hidden="true"></span>Azure DevOps</span>
+          <span>CI/CD</span>
+          <span class="skill service-provider"><span class="skill-logo docker" aria-hidden="true"></span>Docker</span>
+          <span class="skill service-provider"><span class="skill-logo openai" aria-hidden="true"></span>OpenAI</span>
+          <span class="skill service-provider"><span class="skill-logo ollama" aria-hidden="true">ol</span>Ollama</span>
           <span>Playwright</span><span>Cypress</span>
         </div>
         <p class="education"><span>Education</span> BSc Computer Science (Software Engineering), Management and Science University</p>
