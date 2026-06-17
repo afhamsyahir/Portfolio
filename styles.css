@@ -34,6 +34,7 @@
 
 html {
   scroll-behavior: smooth;
+  overscroll-behavior: none;
 }
 
 body {
@@ -336,6 +337,10 @@ strong {
   filter: brightness(1.08);
 }
 
+.quick-contact button.is-copied {
+  background: var(--green);
+}
+
 .quick-contact span {
   color: var(--muted);
   font-family: "Geist Mono", monospace;
@@ -436,12 +441,21 @@ p {
 }
 
 .browser-frame {
+  position: relative;
   margin: 0;
   overflow: hidden;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: #0d0d0f;
   box-shadow: 0 26px 60px -28px rgba(0, 0, 0, 0.7);
+}
+
+.frame-live {
+  position: absolute;
+  top: 9px;
+  right: 11px;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
 .browser-bar {
@@ -569,6 +583,164 @@ p {
   width: 15px;
   height: 15px;
   object-fit: contain;
+}
+
+.client-name--plain {
+  color: var(--muted);
+}
+
+/* ---- Expandable case study (grid-rows animation) ---- */
+.case {
+  margin-top: 14px;
+}
+
+.case-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  color: var(--muted);
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 160ms ease;
+}
+
+.case-toggle::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-top: -2px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 240ms ease;
+}
+
+.case.is-open .case-toggle::after {
+  transform: rotate(-135deg);
+  margin-top: 2px;
+}
+
+.case-toggle:hover,
+.case-toggle:focus-visible {
+  color: var(--fg);
+}
+
+/* The grid-template-rows 0fr → 1fr trick animates to content height
+   without a fixed pixel value; the child must clip its overflow. */
+.case-reveal {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 360ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.case.is-open .case-reveal {
+  grid-template-rows: 1fr;
+}
+
+.case-reveal > .case-body {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.case-body {
+  padding-top: 14px;
+}
+
+.case-body ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.case-body li {
+  position: relative;
+  padding-left: 17px;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.case-body li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 8px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.case-body code {
+  font-family: "Geist Mono", monospace;
+  font-size: 0.9em;
+  color: var(--fg2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+.case-impact {
+  margin: 14px 0 0;
+  color: var(--fg2);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.case-tech {
+  margin: 14px 0 0;
+  color: var(--faint);
+  font-family: "Geist Mono", monospace;
+  font-size: 11px;
+}
+
+.case-tech--inline {
+  margin-top: 9px;
+}
+
+.live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+.client-head h4 .live-tag {
+  margin-left: 8px;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: live-pulse 2s ease-out infinite;
+}
+
+@keyframes live-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--green) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
 }
 
 .stack-groups {
@@ -1038,5 +1210,10 @@ body[data-time="night"] {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
+  }
+
+  .live-dot,
+  .type-caret {
+    animation: none !important;
   }
 }

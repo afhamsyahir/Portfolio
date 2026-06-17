@@ -191,6 +191,7 @@ function finishSplash(reduceMotion = false) {
   }, reduceMotion ? 0 : 680);
 }
 
+let copyResetTimer;
 async function copyEmail() {
   try {
     await navigator.clipboard.writeText(email);
@@ -198,6 +199,15 @@ async function copyEmail() {
     // Clipboard access can be blocked on non-secure local previews; keep the action visible.
   }
   showToast(`Copied ${email}`);
+  if (copyButton) {
+    copyButton.textContent = "Copied!";
+    copyButton.classList.add("is-copied");
+    window.clearTimeout(copyResetTimer);
+    copyResetTimer = window.setTimeout(() => {
+      copyButton.textContent = "Copy email";
+      copyButton.classList.remove("is-copied");
+    }, 1800);
+  }
 }
 
 preparePageEntry();
@@ -254,6 +264,16 @@ function startTypewriter() {
 }
 
 startTypewriter();
+
+document.querySelectorAll(".case-toggle").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const caseEl = btn.closest(".case");
+    if (!caseEl) return;
+    const open = caseEl.classList.toggle("is-open");
+    btn.setAttribute("aria-expanded", String(open));
+    btn.firstChild.textContent = open ? "Hide case study" : "View case study";
+  });
+});
 
 window.addEventListener("load", () => {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
