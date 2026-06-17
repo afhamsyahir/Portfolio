@@ -16,10 +16,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles.css">
+    <noscript>
+      <style>
+        body { overflow: auto; }
+        .splash-screen { display: none; }
+        [data-enter] { opacity: 1; transform: none; }
+      </style>
+    </noscript>
   </head>
-  <body>
+  <body class="is-loading">
+    <div id="splash-screen" class="splash-screen" aria-label="Loading portfolio" role="status">
+      <div class="splash-loader">
+        <svg class="rose-loader" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+          <g id="rose-loader-group">
+            <path id="rose-loader-path" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" opacity="0.1"></path>
+          </g>
+        </svg>
+        <div class="splash-meta">
+          <span>Afham Syahir</span>
+          <small>Loading portfolio</small>
+        </div>
+      </div>
+    </div>
+
     <main id="portfolio">
-      <nav class="topbar" aria-label="Primary">
+      <nav class="topbar" aria-label="Primary" data-enter>
         <span id="clock">--:--:-- KL</span>
         <div class="nav-actions">
           <a href="#work">work</a>
@@ -37,7 +58,7 @@
       </nav>
 
       <section class="intro" aria-labelledby="intro-title">
-        <div class="profile">
+        <div class="profile" data-enter>
           <img class="avatar" src="./assets/avatar.png" alt="Illustrated avatar of Afham Syahir" width="50" height="50">
           <div>
             <p class="name">Afham Syahir</p>
@@ -45,20 +66,20 @@
           </div>
         </div>
 
-        <h1 id="intro-title">I turn complex operations into clean, usable software.</h1>
-        <p class="lead">
+        <h1 id="intro-title" data-enter>I turn complex operations into clean, usable software.</h1>
+        <p class="lead" data-enter>
           Front-end engineer with <strong>4+ years</strong> shipping enterprise web apps for the energy and public sectors.
           Angular, .NET and Azure. I own features from architecture through deployment, currently lead <strong>AEM+</strong>
           and bring AI into practical, everyday tools.
         </p>
 
-        <div class="quick-contact">
+        <div class="quick-contact" data-enter>
           <button id="copy-email" type="button">Copy email</button>
           <span>or press <kbd>C</kbd></span>
         </div>
       </section>
 
-      <section id="xp" class="section" aria-labelledby="experience-title">
+      <section id="xp" class="section" aria-labelledby="experience-title" data-enter>
         <div class="section-heading">
           <span>01</span>
           <h2 id="experience-title">Experience</h2>
@@ -88,7 +109,7 @@
         </div>
       </section>
 
-      <section id="work" class="section" aria-labelledby="work-title">
+      <section id="work" class="section" aria-labelledby="work-title" data-enter>
         <div class="section-heading">
           <span>02</span>
           <h2 id="work-title">Selected Work</h2>
@@ -158,7 +179,7 @@
         </div>
       </section>
 
-      <section class="section" aria-labelledby="stack-title">
+      <section class="section" aria-labelledby="stack-title" data-enter>
         <div class="section-heading">
           <span>03</span>
           <h2 id="stack-title">Stack</h2>
@@ -187,7 +208,7 @@
         <p class="education"><span>Education</span> BSc Computer Science (Software Engineering), Management and Science University</p>
       </section>
 
-      <section id="contact" class="section contact" aria-labelledby="contact-title">
+      <section id="contact" class="section contact" aria-labelledby="contact-title" data-enter>
         <div class="section-heading">
           <span>04</span>
           <h2 id="contact-title">Contact</h2>
@@ -202,7 +223,7 @@
         </div>
       </section>
 
-      <footer>
+      <footer data-enter>
         <span>Afham Syahir</span>
         <span>Kuala Lumpur, MY</span>
       </footer>
