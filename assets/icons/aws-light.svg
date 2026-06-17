@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 98" fill="none">
+  <text x="80" y="52" text-anchor="middle"
+        font-family="Arial, Helvetica, sans-serif" font-weight="700"
+        font-size="66" letter-spacing="-2" fill="#232F3E">aws</text>
+  <path d="M14 74c26 17 53 25 80 25 19 0 39-4 57-12 3-1 6 2 3 5-16 13-39 20-61 20-30 0-58-11-79-31-2-2 0-5 0-7z" fill="#FF9900"/>
+  <path d="M132 80c1-4 3-11 1-13-2-2-9-1-13 0-1 0-2-1-1-2 5-4 14-4 16-2 2 2 1 11-1 18-1 1-2 1-2-1z" fill="#FF9900"/>
+</svg>
