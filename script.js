@@ -265,6 +265,27 @@ function startTypewriter() {
 
 startTypewriter();
 
+document.querySelectorAll(".desktop-screens").forEach((carousel) => {
+  const frame = carousel.closest(".bayarwoi-desktop-preview");
+  if (!frame) return;
+
+  let carouselTicking = false;
+  const updateCarouselEdges = () => {
+    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+    frame.classList.toggle("is-at-start", carousel.scrollLeft <= 1);
+    frame.classList.toggle("is-at-end", carousel.scrollLeft >= maxScroll - 1);
+    carouselTicking = false;
+  };
+
+  carousel.addEventListener("scroll", () => {
+    if (carouselTicking) return;
+    carouselTicking = true;
+    window.requestAnimationFrame(updateCarouselEdges);
+  }, { passive: true });
+  window.addEventListener("resize", updateCarouselEdges);
+  updateCarouselEdges();
+});
+
 document.querySelectorAll(".case-toggle").forEach((btn) => {
   btn.addEventListener("click", () => {
     const caseEl = btn.closest(".case");

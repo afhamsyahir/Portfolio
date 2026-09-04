@@ -24,7 +24,7 @@
       href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260623" />
+    <link rel="stylesheet" href="./styles.css?v=20260904" />
     <noscript>
       <style>
         body {
@@ -275,29 +275,69 @@
             </article>
 
             <article class="project">
-              <figure class="browser-frame">
-                <div class="browser-bar" aria-hidden="true">
-                  <span></span><span></span><span></span><small>bayarwoi</small>
-                </div>
-                <img
-                  src="./assets/bayarwoi.png"
-                  alt="Bayarwoi subscription portfolio dashboard"
-                  loading="lazy"
-                />
-              </figure>
+              <div class="bayarwoi-showcase">
+                <figure class="bayarwoi-desktop-preview is-at-start">
+                  <div
+                    class="desktop-screens"
+                    tabindex="0"
+                    aria-label="Bayarwoi desktop views. Scroll horizontally to see the calendar and report."
+                  >
+                    <div class="desktop-screen">
+                      <img
+                        src="./assets/bayarwoi-calendar.png"
+                        alt="Bayarwoi desktop calendar with monthly subscription and expense totals"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="desktop-screen">
+                      <img
+                        src="./assets/bayarwoi.png"
+                        alt="Bayarwoi annual report showing subscription and expense totals"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                </figure>
+                <figure class="mobile-preview">
+                  <figcaption>
+                    <span>Mobile experience</span>
+                    <small><i aria-hidden="true"></i>In development</small>
+                  </figcaption>
+                  <div class="mobile-screens">
+                    <img
+                      src="./assets/bayarwoi-mobile-calendar.png"
+                      alt="Bayarwoi mobile calendar with monthly spending summary"
+                      loading="lazy"
+                    />
+                    <img
+                      src="./assets/bayarwoi-mobile-expenses.png"
+                      alt="Bayarwoi mobile expense tracker with classified purchases"
+                      loading="lazy"
+                    />
+                    <img
+                      src="./assets/bayarwoi-mobile-people.png"
+                      alt="Bayarwoi mobile shared subscription balances"
+                      loading="lazy"
+                    />
+                  </div>
+                </figure>
+              </div>
               <div class="project-title">
-                <h3>Bayarwoi — Shared Subscription Reminders</h3>
+                <h3>Bayarwoi — Subscriptions &amp; Expenses, Simplified</h3>
                 <span class="role-tag blue">Side project</span>
               </div>
               <p>
-                Helps groups manage shared subscriptions — sends each member
-                their receipt and reminds co-subscribers to pay their share,
-                including the exact amount due per subscription and billing
-                period.
+                One calm, synced place to manage recurring subscriptions and
+                everyday spending. It scans and classifies receipts,
+                automatically captures Apple Pay purchases, and keeps the same
+                up-to-date view across web and a mobile app now in development.
+                For shared subscriptions, it reminds each person to pay and
+                tracks their receipts and payment status—removing manual
+                follow-ups and one-by-one checks.
               </p>
               <p class="stack">
-                Angular 21 · TypeScript · Tailwind · Angular Signals · .NET ·
-                Hangfire · Azure · AI receipt parsing
+                React 19 · TypeScript · React Native (Expo) · Cloudflare Workers
+                · D1 · Hono · OpenAI receipt classification
               </p>
               <div class="case">
                 <button class="case-toggle" type="button" aria-expanded="false">
@@ -307,18 +347,28 @@
                   <div class="case-body">
                     <ul>
                       <li>
-                        Multi-channel reminders over email and WhatsApp on
-                        recurring schedules, with the exact amount due per
-                        subscription and billing period.
+                        A calendar-first flow makes subscriptions, expenses,
+                        upcoming payments and yearly reports easy to understand
+                        at a glance.
                       </li>
                       <li>
-                        Real-time, per-recipient delivery-status tracking for
-                        every reminder sent.
+                        Receipt scanning extracts purchase details and
+                        classifies each expense into a useful category with a
+                        review path when needed.
                       </li>
                       <li>
-                        An AI engine that parses forwarded receipts (merchant,
-                        amount, date) and auto-categorizes expenses by keyword
-                        rules.
+                        A secure iOS automation captures Apple Pay purchases and
+                        adds them to the same expense history automatically.
+                      </li>
+                      <li>
+                        Automated reminders notify everyone sharing a
+                        subscription when payment is due, while receipt and
+                        payment-status tracking shows who has paid without
+                        chasing or checking each person manually.
+                      </li>
+                      <li>
+                        The mobile app is being built for quick, seamless use
+                        anywhere, with data kept in sync across devices.
                       </li>
                     </ul>
                   </div>
@@ -990,6 +1040,6 @@
       </div>
     </section>
 
-    <script src="./script.js?v=20260623"></script>
+    <script src="./script.js?v=20260904"></script>
   </body>
 </html>
